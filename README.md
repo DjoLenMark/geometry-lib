@@ -1,15 +1,35 @@
-geometry
+# geometry-lib
+
 Библиотека для расчёта площадей геометрических фигур на Python.
 
-Возможности
-Круг (Circle): площадь по радиусу
-Треугольник (Triangle): площадь по трём сторонам, проверка на прямоугольность
-Лёгкое расширение: добавьте новую фигуру, просто создав класс-наследник Figure
-Установка
-Скопируйте папку geometry в ваш проект или установите через pip после публикации.
+## Возможности
+
+- **Круг (Circle)** — вычисление площади по радиусу.
+- **Треугольник (Triangle)** — вычисление площади по трём сторонам + проверка на прямоугольность.
+
+## Особенности
+
+✅ Лёгкое расширение — добавляйте новые фигуры, просто создавая класс-наследник `Figure`.  
+✅ Унифицированный интерфейс — все фигуры реализуют общий метод `.area()`.  
+✅ Проверка треугольника на прямоугольность `.is_right_angled()`.  
+✅ Юнит-тесты на Pytest.  
+✅ MIT License.
+
+## Установка
+
+Склонируйте репозиторий и установите как модуль вручную:
+
+```bash
+git clone https://github.com/ВАШ_РЕПОЗИТОРИЙ/geometry-lib.git
+cd geometry-lib
+pip install .
+Или просто скопируйте папку geometry/ в свой проект.
 
 Пример использования
-from geometry.figures import Circle, Triangle, Figure
+python
+Копировать
+Редактировать
+from geometry.figures import Circle, Triangle
 from typing import List
 
 # Создание фигур
@@ -17,7 +37,7 @@ circle = Circle(2)
 triangle = Triangle(3, 4, 5)
 
 # Универсальный список фигур
-figures: List[Figure] = [circle, triangle]
+figures: List[Circle | Triangle] = [circle, triangle]
 
 for fig in figures:
     print(f"Площадь: {fig.area()}")
@@ -25,29 +45,27 @@ for fig in figures:
 # Проверка треугольника на прямоугольность
 if isinstance(triangle, Triangle):
     print("Прямоугольный?", triangle.is_right_angled())
-Документация
-Абстрактный класс Figure
-class Figure(ABC):
-    @abstractmethod
-    def area(self) -> float:
-        pass
-Класс Circle
-class Circle(Figure):
-    def __init__(self, radius: float) -> None:
-        ...
-    def area(self) -> float:
-        ...
-Класс Triangle
-class Triangle(Figure):
-    def __init__(self, a: float, b: float, c: float) -> None:
-        ...
-    def area(self) -> float:
-        ...
-    def is_right_angled(self) -> bool:
-        ...
+Структура проекта
+markdown
+Копировать
+Редактировать
+geometry/
+├── __init__.py
+├── figures.py
+├── utils.py (если используется)
+tests/
+├── __init__.py
+└── test_figures.py
 Тесты
 Для запуска тестов:
 
+bash
+Копировать
+Редактировать
 pytest geometry/tests/
 Лицензия
-MIT
+MIT License.
+
+yaml
+Копировать
+Редактировать
